@@ -4,17 +4,23 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
-@Table(name = "productos")
+@Table(name = "PRODUCTOS")
 public class Producto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_producto")
@@ -24,8 +30,28 @@ public class Producto implements Serializable {
 	private String codigoBarras;
 	@Column(name = "precio_venta")
 	private Double precioVenta;
-	private Integer stock;
+	@Column(name = "cantidad_stock")
+	private Integer cantidadStock;
 	private Integer estado;
+	@Column(name = "id_categoria")
+	private Long categoriaId;
+
+	@Transient
+	private Categoria categoria;
+
+	public Producto() {
+	}
+
+	public Producto(Long id, String nombre, String codigoBarras, Double precioVenta, Integer cantidadStock,
+			Integer estado, Categoria categoria) {
+		this.id = id;
+		this.nombre = nombre;
+		this.codigoBarras = codigoBarras;
+		this.precioVenta = precioVenta;
+		this.cantidadStock = cantidadStock;
+		this.estado = estado;
+		this.categoria = categoria;
+	}
 
 	public Long getId() {
 		return id;
@@ -60,11 +86,11 @@ public class Producto implements Serializable {
 	}
 
 	public Integer getStock() {
-		return stock;
+		return cantidadStock;
 	}
 
-	public void setStock(Integer stock) {
-		this.stock = stock;
+	public void setStock(Integer cantidadStock) {
+		this.cantidadStock = cantidadStock;
 	}
 
 	public Integer getEstado() {
@@ -73,6 +99,22 @@ public class Producto implements Serializable {
 
 	public void setEstado(Integer estado) {
 		this.estado = estado;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public Long getCategoriaId() {
+		return categoriaId;
+	}
+
+	public void setCategoriaId(Long categoriaId) {
+		this.categoriaId = categoriaId;
 	}
 
 	@Override
@@ -86,10 +128,14 @@ public class Producto implements Serializable {
 		builder.append(codigoBarras);
 		builder.append(", precioVenta=");
 		builder.append(precioVenta);
-		builder.append(", stock=");
-		builder.append(stock);
+		builder.append(", cantidadStock=");
+		builder.append(cantidadStock);
 		builder.append(", estado=");
 		builder.append(estado);
+		builder.append(", categoriaId=");
+		builder.append(categoriaId);
+		builder.append(", categoria=");
+		builder.append(categoria);
 		builder.append("]");
 		return builder.toString();
 	}
