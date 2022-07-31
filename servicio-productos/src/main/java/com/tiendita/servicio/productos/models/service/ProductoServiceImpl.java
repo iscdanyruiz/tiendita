@@ -26,7 +26,7 @@ public class ProductoServiceImpl implements IProductoService {
 	public List<Producto> findAll() {
 		List<Categoria> categorias = Arrays
 				.asList(clienteRest.getForObject(
-						"http://localhost:8001/listar", 
+						"http://localhost:8001/categoria/listar", 
 						Categoria[].class
 						));
 		List<Producto> productos = (List<Producto>) productoDao.findAll();
