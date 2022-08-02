@@ -1,7 +1,5 @@
 package com.tiendita.servicio.productos.models.entity;
 
-import java.io.Serializable;
-
 public class Categoria {
 
 	private Long idCategorias;
