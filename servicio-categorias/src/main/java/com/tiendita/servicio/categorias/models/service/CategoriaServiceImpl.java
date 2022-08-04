@@ -24,7 +24,6 @@ public class CategoriaServiceImpl implements ICategoriaService{
 	@Override
 	@Transactional(readOnly = true)
 	public Categoria findById(Long id) {
-		// return categoriaDao.findById(id).get();
 		return categoriaDao.findById(id).orElse(null);
 	}
 
