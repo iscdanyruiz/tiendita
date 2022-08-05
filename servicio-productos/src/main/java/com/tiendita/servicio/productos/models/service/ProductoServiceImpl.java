@@ -12,7 +12,7 @@ import com.tiendita.servicio.productos.models.dao.ProductoDao;
 import com.tiendita.servicio.productos.models.entity.Categoria;
 import com.tiendita.servicio.productos.models.entity.Producto;
 
-@Service
+@Service("serviceRestTemplate")
 public class ProductoServiceImpl implements IProductoService {
 
 	@Autowired

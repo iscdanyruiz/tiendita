@@ -3,6 +3,7 @@ package com.tiendita.servicio.productos.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import com.tiendita.servicio.productos.models.service.IProductoService;
 public class ProductoController {
 
 	@Autowired
+	@Qualifier("serviceFeign")
 	private IProductoService productoService;
 
 	@GetMapping("/listar")

@@ -14,7 +14,7 @@ import com.tiendita.servicio.categorias.models.service.ICategoriaService;
 @RestController
 @RequestMapping("/categoria")
 public class CategoriaController {
-	
+
 	@Autowired
 	private ICategoriaService categoriaService;
 
@@ -24,7 +24,11 @@ public class CategoriaController {
 	}
 
 	@GetMapping("/listar/{id}")
-	public Categoria detalle(@PathVariable Long id) {
+	public Categoria detalle(@PathVariable Long id) throws Exception {
+		/*boolean ok = false;
+		if(!ok) {
+			throw new Exception("No se puede cargar la categoría");
+		}*/
 		return categoriaService.findById(id);
 	}
 }
