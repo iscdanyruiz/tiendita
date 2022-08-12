@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tiendita.servicio.productos.clientes.CategoriaClienteRest;
+import com.tiendita.servicio.productos.clientefeign.CategoriaClienteRest;
 import com.tiendita.servicio.productos.models.dao.ProductoDao;
 import com.tiendita.servicio.productos.models.entity.Categoria;
 import com.tiendita.servicio.productos.models.entity.Producto;

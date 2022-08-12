@@ -1,4 +1,4 @@
-package com.tiendita.servicio.productos.clientes;
+package com.tiendita.servicio.productos.clientefeign;
 
 import java.util.List;
 
