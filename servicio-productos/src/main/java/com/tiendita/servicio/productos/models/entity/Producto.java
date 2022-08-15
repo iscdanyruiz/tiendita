@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "PRODUCTOS")
 public class Producto implements Serializable {
@@ -28,6 +30,7 @@ public class Producto implements Serializable {
 	@Column(name = "cantidad_stock")
 	private Integer cantidadStock;
 	private Integer estado;
+	@JsonIgnore
 	@Column(name = "id_categoria")
 	private Long categoriaId;
 

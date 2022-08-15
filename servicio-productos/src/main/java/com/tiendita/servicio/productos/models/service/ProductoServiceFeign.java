@@ -1,6 +1,5 @@
 package com.tiendita.servicio.productos.models.service;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +22,14 @@ public class ProductoServiceFeign implements IProductoService {
 	@Override
 	public List<Producto> findAll() {
 		List<Producto> productos = (List<Producto>) productoDao.findAll();
+		List<Categoria> categorias = clienteFeign.listar();
 		for (Producto producto : productos) {
-			Categoria categoria = clienteFeign.detalle(producto.getCategoriaId());
-			producto.setCategoria(categoria);
+			for (Categoria categoria : categorias) {
+				if (producto.getCategoriaId().equals(categoria.getIdCategorias())) {
+					producto.setCategoria(categoria);
+				}
+			}
+
 		}
 		return productos;
 	}
@@ -34,7 +38,9 @@ public class ProductoServiceFeign implements IProductoService {
 	public Producto finById(Long id) {
 		Producto producto = productoDao.findById(id).orElse(null);
 		Categoria categoria = clienteFeign.detalle(producto.getCategoriaId());
-		producto.setCategoria(categoria);
+		if (producto.getCategoriaId().equals(categoria.getIdCategorias())) {
+			producto.setCategoria(categoria);
+		}
 		return producto;
 	}
 
