@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +17,7 @@ import com.tiendita.servicio.compras.models.service.ICompraService;
 public class CompraController {
 
 	@Autowired
-	@Qualifier("serviceRestTemplate")
+	@Qualifier("serviceFeign")
 	private ICompraService compraService;
 
 	@GetMapping("/listar")
@@ -25,7 +26,7 @@ public class CompraController {
 	}
 
 	@GetMapping("/listar/{id}")
-	public Compra detalle(Long id) {
+	public Compra detalle(@PathVariable Long id) {
 		return compraService.findById(id);
 	}
 }

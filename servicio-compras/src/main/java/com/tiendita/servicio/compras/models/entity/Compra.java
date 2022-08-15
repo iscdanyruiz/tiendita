@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "COMPRAS")
@@ -19,7 +22,8 @@ public class Compra {
 	private Long idCompra;
 
 	@Column(name = "id_cliente")
-	private String idCliente;
+	@JsonIgnore
+	private Long idCliente;
 
 	private LocalDateTime fecha;
 
@@ -29,6 +33,9 @@ public class Compra {
 	private String comentario;
 	private String estado;
 
+	@Transient
+	private Cliente cliente;
+
 	public Long getIdCompra() {
 		return idCompra;
 	}
@@ -37,11 +44,11 @@ public class Compra {
 		this.idCompra = idCompra;
 	}
 
-	public String getIdCliente() {
+	public Long getIdCliente() {
 		return idCliente;
 	}
 
-	public void setIdCliente(String idCliente) {
+	public void setIdCliente(Long idCliente) {
 		this.idCliente = idCliente;
 	}
 
@@ -77,6 +84,14 @@ public class Compra {
 		this.estado = estado;
 	}
 
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -92,6 +107,8 @@ public class Compra {
 		builder.append(comentario);
 		builder.append(", estado=");
 		builder.append(estado);
+		builder.append(", cliente=");
+		builder.append(cliente);
 		builder.append("]");
 		return builder.toString();
 	}
